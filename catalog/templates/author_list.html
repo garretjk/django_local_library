@@ -1,9 +1,11 @@
-{% extends "base_generic.html" %}
-{% block content %}
-<h1>All Authors</h1>
-<ul>
-    {% for author in authors %}
-        <li>{{ author.first_name }} {{ author.last_name }}</li>
-    {% endfor %}
-</ul>
-{% endblock %}
+{% if is_paginated %}
+  <div class="pagination">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+  </div>
+{% endif %}
